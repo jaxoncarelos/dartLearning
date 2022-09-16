@@ -60,14 +60,13 @@ void OpenRegister() {
   final db = sqlite3.open("./data/data.db");
   final sqlInsert =
       db.prepare('INSERT INTO users (Username, Password) VALUES(?, ?)');
-
+  final sqlExist = db.prepare('SELECT * FROM users WHERE username=?;');
   stdout.write("${tabs}Enter username: ");
   username = stdin.readLineSync();
   stdout.write("\n${tabs}Enter password: ");
   password = stdin.readLineSync();
 
-  final ResultSet exists =
-      db.select('SELECT * FROM users WHERE username=?;', [username]);
+  final ResultSet exists = sqlExist.select([username]);
 
   if (exists.isNotEmpty) {
     db.dispose();
