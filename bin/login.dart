@@ -33,8 +33,7 @@ void main() {
 }
 
 void OpenLogin() {
-  String? username;
-  String? password;
+  String? username, password;
   final db = sqlite3.open("./data/data.db");
   final sqlCheck = db.prepare("SELECT * FROM users WHERE username=?");
 
@@ -57,8 +56,7 @@ void OpenLogin() {
 }
 
 void OpenRegister() {
-  String? username;
-  String? password;
+  String? username, password;
   final db = sqlite3.open("./data/data.db");
   final sqlInsert =
       db.prepare('INSERT INTO users (Username, Password) VALUES(?, ?)');
